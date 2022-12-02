@@ -1,0 +1,1 @@
+This is my first attempt at the advent of code challenge
