@@ -1,30 +1,29 @@
 
-def file_to_list(file):
+def get_from_file(file):
     with open(file) as f:
         lines = f.read()
+    return lines
 
+def prep_data(file):
+    lines = get_from_file(file)
     elves = [[int(y) for y in x.split('\n')] for x in lines.split("\n\n")]
-    most_cal(elves)
-    top_three(elves)
-
-
-def most_cal(elves):
-    largest = 0
-    for elf in elves:
-        cal = sum(elf)
-        if cal > largest:
-            largest = cal
-    print(f"Largest amount of Calories: {largest}")
-
-def top_three(elves):
+    
     sum_list = []
     for elf in elves:
         sum_list.append(sum(elf))
+
     sum_list.sort(reverse=True)
-    top_three = sum_list[0:3]
-    print(f"Sum of top 3 largest calories: {sum(top_three)}")
+    return sum_list
+
+def most_cal(elves):
+    print(f"Largest amount of Calories: {elves[0]}")
+
+def top_three(elves):
+    print(f"Sum of top 3 largest calories: {sum(elves[0:3])}")
 
 def main():
-    file_to_list('input.txt')
+    list = prep_data('input.txt')
+    most_cal(list)
+    top_three(list)
 
 main()
